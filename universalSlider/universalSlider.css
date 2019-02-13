@@ -4,69 +4,44 @@
 }
 
 /*Slider styles*/
-.universalSlider{
+.universal-slider{
     width: 50%;
     margin: 0 auto;
     position: relative;
 }
-.universalSlider .sliderContainer{
+.universal-slider .slider-container{
     width: 100%;
 }
-.universalSlider .sliderFrame{
+.universal-slider .slider-frame{
     width: 100%;
-    height: 550px;
+    height: 400px;
     position: relative;
-    overflow: hidden;
-}
-.universalSlider .sliderFrame .sliderTape{
-    font-size: 0;
+    overflow-x: hidden;
     overflow-y: hidden;
+}
+.universal-slider .slider-frame .slider-tape{
+    font-size: 0;
     position: absolute;
     top: 0;
     left: 0;
 }
-.universalSlider .sliderFrame .sliderTape .sliderSlide{
+.universal-slider .slider-frame .slider-tape .slider-slide{
     display: inline-block;
     vertical-align: top;
     width: 100%;
     height: 100%;
 }
-.universalSlider .sliderFrame .sliderTape .sliderSlide img{
+.universal-slider .slider-frame .slider-tape .slider-slide img{
     width: 100%;
 }
 /*Slider buttons------------------------------------------------------------------------------------------------------*/
-.universalSlider .sliderButtons{
-
-}
-.sliderRowButtons{
-    height: 14px;
-    position: absolute;
-    bottom: 25px;
-    right: 25px;
-}
-.sliderRowButtons .sliderButton{
-    width: 14px;
-    height: 14px;
-    background: #ffffff;
-    border-radius: 50%;
-    display: inline-block;
-    margin-right: 9px;
-    position: relative;
-    cursor: pointer;
-}
-.sliderRowButtons .sliderButton .sliderButton-active{
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #cccccc;
-    position: absolute;
-    top: 3px;
-    left: 3px;
-}
-.universalSlider .sliderButtons .sliderSideButtons{
+.universal-slider .slider-buttons{
     display: block;
 }
-.universalSlider .sliderButtons .sliderSideButtons div{
+.universal-slider .slider-buttons .slider-side-buttons{
+    display: block;
+}
+.universal-slider .slider-buttons .slider-side-buttons div{
     width: 100px;
     height: 40px;
     background: gray;

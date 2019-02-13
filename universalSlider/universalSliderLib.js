@@ -890,7 +890,7 @@ USL.autoSliding = function (param) {
  */
 USL.sideButtons = function (buttonsId) {
 
-    var name = "sideButtons";
+    var name = "side-buttons";
     var self = this;
     var leftButton;
     var rightButton;
@@ -901,11 +901,11 @@ USL.sideButtons = function (buttonsId) {
         if(buttonsId){
             buttonsContainer = document.getElementById(buttonsId);
         }else{
-            buttonsContainer = document.getElementById(self._idInstance).getElementsByClassName("sliderSideButtons")[0];
+            buttonsContainer = document.getElementById(self._idInstance).getElementsByClassName("slider-side-buttons")[0];
         }
 
-        leftButton = buttonsContainer.getElementsByClassName("leftSide")[0];
-        rightButton = buttonsContainer.getElementsByClassName("rightSide")[0];
+        leftButton = buttonsContainer.getElementsByClassName("left-side")[0];
+        rightButton = buttonsContainer.getElementsByClassName("right-side")[0];
 
         leftButton.onclick = function (event) {
             if(self.sliderDirection === "h"){

@@ -1,7 +1,7 @@
 // Copyright © 2019 Sergei Albov. All rights reserved.
 
 /**
- * @description Класс UniversalSlider - создаёт объект-оболочку слайдера. Дефолт("SL1", "h", "universalSlider"). Для расширения сладера используется библиотека модулей "USL", но также возможно использовать свои библиотеки, организованные в соответствии со стандартом библиотеки.
+ * @description Класс UniversalSlider - создаёт объект-оболочку слайдера. Дефолт("SL1", "h", "universal-slider"). Для расширения сладера используется библиотека модулей "USL", но также возможно использовать свои библиотеки, организованные в соответствии со стандартом библиотеки.
  * @param {object} obj - объект параметров
  * {string} idInstance - (обязательный)id конкретного слайдера(должен совпадать с ид хтмл кода этого слайдера).
  * {string} type - тип слайдера (горизонтальный или вертикальный)("h" или "v").
@@ -12,7 +12,7 @@
 function UniversalSlider(obj) {
 
     this._idInstance = obj.idInstance;
-    this._systemClass = (obj.systemClass) ? + obj.systemClass : "universalSlider";
+    this._systemClass = (obj.systemClass) ? + obj.systemClass : "universal-slider";
     this._initialized = false;
     this.engineType = "sliderEngine";
     this.engineVersion = "ver1_0_0";
@@ -112,10 +112,10 @@ UniversalSlider.prototype._setHtmlElementsVar = function () {
     var sliderContainerID = document.getElementById(this._idInstance);
 
     if(sliderContainerID.classList.contains(this._systemClass)){
-        this.sliderContainer = sliderContainerID.getElementsByClassName("sliderContainer")[0];//контейнер слайдера
-        this.sliderFrame = sliderContainerID.getElementsByClassName("sliderFrame")[0];//фрейм слайдера
-        this.sliderTape = sliderContainerID.getElementsByClassName("sliderTape")[0];//лента слайдера
-        this.arrSlides = sliderContainerID.getElementsByClassName("sliderSlide");//массив слайдов
+        this.sliderContainer = sliderContainerID.getElementsByClassName("slider-container")[0];//контейнер слайдера
+        this.sliderFrame = sliderContainerID.getElementsByClassName("slider-frame")[0];//фрейм слайдера
+        this.sliderTape = sliderContainerID.getElementsByClassName("slider-tape")[0];//лента слайдера
+        this.arrSlides = sliderContainerID.getElementsByClassName("slider-slide");//массив слайдов
     }
 
     return this;
@@ -128,8 +128,8 @@ UniversalSlider.prototype._setHtmlElementsVar = function () {
  */
 UniversalSlider.prototype._setMainSliderSizesVar = function () {
 
-    this.slideWidth = parseInt(getComputedStyle(this.sliderFrame).width);//ширина слайда
-    this.slideHeight = parseInt(getComputedStyle(this.sliderFrame).height);//высота слайда
+    this.slideWidth = parseFloat(getComputedStyle(this.sliderFrame).width);//ширина слайда
+    this.slideHeight = parseFloat(getComputedStyle(this.sliderFrame).height);//высота слайда
     this.quantitySlides = this.arrSlides.length;
 
     if(this.sliderDirection === "h"){
