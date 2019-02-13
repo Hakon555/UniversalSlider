@@ -112,10 +112,10 @@ UniversalSlider.prototype._setHtmlElementsVar = function () {
     var sliderContainerID = document.getElementById(this._idInstance);
 
     if(sliderContainerID.classList.contains(this._systemClass)){
-        this.sliderContainer = sliderContainerID.getElementsByClassName("slider-container")[0];//контейнер слайдера
-        this.sliderFrame = sliderContainerID.getElementsByClassName("slider-frame")[0];//фрейм слайдера
-        this.sliderTape = sliderContainerID.getElementsByClassName("slider-tape")[0];//лента слайдера
-        this.arrSlides = sliderContainerID.getElementsByClassName("slider-slide");//массив слайдов
+        this.sliderContainer = sliderContainerID.getElementsByClassName("universal-slider__container")[0];//контейнер слайдера
+        this.sliderFrame = sliderContainerID.getElementsByClassName("universal-slider__frame")[0];//фрейм слайдера
+        this.sliderTape = sliderContainerID.getElementsByClassName("universal-slider__tape")[0];//лента слайдера
+        this.arrSlides = sliderContainerID.getElementsByClassName("universal-slider__slide");//массив слайдов
     }
 
     return this;

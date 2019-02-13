@@ -9,39 +9,39 @@
     margin: 0 auto;
     position: relative;
 }
-.universal-slider .slider-container{
+.universal-slider__container{
     width: 100%;
 }
-.universal-slider .slider-frame{
+.universal-slider__frame{
     width: 100%;
     height: 400px;
     position: relative;
     overflow-x: hidden;
     overflow-y: hidden;
 }
-.universal-slider .slider-frame .slider-tape{
+.universal-slider__tape{
     font-size: 0;
     position: absolute;
     top: 0;
     left: 0;
 }
-.universal-slider .slider-frame .slider-tape .slider-slide{
+.universal-slider__slide{
     display: inline-block;
     vertical-align: top;
     width: 100%;
     height: 100%;
 }
-.universal-slider .slider-frame .slider-tape .slider-slide img{
+.universal-slider__slide img{
     width: 100%;
 }
 /*Slider buttons------------------------------------------------------------------------------------------------------*/
-.universal-slider .slider-buttons{
+.universal-slider__buttons{
     display: block;
 }
-.universal-slider .slider-buttons .slider-side-buttons{
+.side-buttons{
     display: block;
 }
-.universal-slider .slider-buttons .slider-side-buttons div{
+.side-buttons > div{
     width: 100px;
     height: 40px;
     background: gray;

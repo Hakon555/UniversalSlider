@@ -901,11 +901,11 @@ USL.sideButtons = function (buttonsId) {
         if(buttonsId){
             buttonsContainer = document.getElementById(buttonsId);
         }else{
-            buttonsContainer = document.getElementById(self._idInstance).getElementsByClassName("slider-side-buttons")[0];
+            buttonsContainer = document.getElementById(self._idInstance).getElementsByClassName("side-buttons")[0];
         }
 
-        leftButton = buttonsContainer.getElementsByClassName("left-side")[0];
-        rightButton = buttonsContainer.getElementsByClassName("right-side")[0];
+        leftButton = buttonsContainer.getElementsByClassName("slider-side-buttons__left-side")[0];
+        rightButton = buttonsContainer.getElementsByClassName("slider-side-buttons__right-side")[0];
 
         leftButton.onclick = function (event) {
             if(self.sliderDirection === "h"){
