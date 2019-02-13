@@ -3,7 +3,10 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>universalSlider</title>
+    <meta name="keywords" content="universalSlider">
+    <meta name="description" content="universalSlider">
 
     <link rel="stylesheet" href="universalSlider/universalSlider.css">
 </head>
@@ -15,42 +18,42 @@
                 <div class="sliderFrame">
                     <div class="sliderTape">
                         <div class="sliderSlide">
-                            <a href="/">
+                            <a href="/mock-address/change-me">
                                 <img src="images/newImages/1.jpg" alt="">
                             </a>
                         </div>
                         <div class="sliderSlide">
-                            <a href="/">
+                            <a href="/mock-address/change-me">
                                 <img src="images/newImages/2.jpg" alt="">
                             </a>
                         </div>
-                        <div class="sliderSlide"><!--data-skipnextslide="1"-->
-                            <a href="/">
+                        <div class="sliderSlide">
+                            <a href="/mock-address/change-me">
                                 <img src="images/newImages/3.jpg" alt="">
                             </a>
                         </div>
                         <div  class="sliderSlide">
-                            <a href="/">
+                            <a href="/mock-address/change-me">
                                 <img src="images/newImages/4.jpg" alt="">
                             </a>
                         </div>
                         <div class="sliderSlide">
-                            <a href="/">
+                            <a href="/mock-address/change-me">
                                 <img src="images/newImages/5.jpg" alt="">
                             </a>
                         </div>
                         <div class="sliderSlide">
-                            <a href="/">
+                            <a href="/mock-address/change-me">
                                 <img src="images/newImages/6.jpg" alt="">
                             </a>
                         </div>
                         <div class="sliderSlide">
-                            <a href="/">
+                            <a href="/mock-address/change-me">
                                 <img src="images/newImages/7.jpg" alt="">
                             </a>
                         </div>
                         <div class="sliderSlide">
-                            <a href="/">
+                            <a href="/mock-address/change-me">
                                 <img src="images/newImages/8.jpg" alt="">
                             </a>
                         </div>
@@ -58,14 +61,13 @@
                 </div>
             </div>
             <div class="sliderButtons">
-                <div class="sliderRowButtons"></div>
+                <!--<div class="sliderRowButtons"></div> module for that is not written -->
                 <div class="sliderSideButtons">
-                    <div id="leftSide" class="leftSide">Left</div>
-                    <div id="rightSide" class="rightSide">Right</div>
+                    <div class="leftSide">Left</div>
+                    <div class="rightSide">Right</div>
                 </div>
             </div>
         </div>
-
     </div>
 
     <script src="universalSlider/functionsLib.js"></script>
@@ -76,7 +78,7 @@
         window.slider = new UniversalSlider({idInstance: "sl-1", type:"h", logging: true});
         slider.initSlider();
 
-        slider.addFeature(USL.mod1, [123, 456, 789]);
+        //slider.addFeature(USL.mod1, [123, 456, 789]); test module
         slider.addFeature(USL.autoSliding, []);
         slider.addFeature(USL.sideButtons, []);
 
