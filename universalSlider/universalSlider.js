@@ -230,14 +230,14 @@ UniversalSlider.prototype._enableRefreshing = function () {
     var innerRefreshingSlider = this._innerRefreshingSlider;
     var modulesRefreshingSlider = this._modulesRefreshingSlider;
 
-    window.onresize = function (event) {
+    window.addEventListener("resize", function (event) {
 
         var oldStepSize = self.sliderStep;
         var ratio;
 
         ratio = innerRefreshingSlider.call(self, oldStepSize);
         modulesRefreshingSlider.call(self, {ratio: ratio});
-    };
+    });
 
     return this;
 };

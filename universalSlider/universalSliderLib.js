@@ -18,7 +18,6 @@ function engine() {
     var underAction = false;
     var targetPosition = 0;//пиксели
     var previousPosition = null;
-    var logging = false;
     var self = this;
     var arrExecutingAnimationId = [];
     var animatedOrder = {};
@@ -270,7 +269,9 @@ function engine() {
     functionKF.master = {
         func: function (checkPosition) {
 
-            if((checkPosition * -self.sliderStep) < -(self.sliderTapeLength - self.sliderStep) || (checkPosition * -self.sliderStep) > 0) {
+            var isOutsideSliderTape = (checkPosition * -self.sliderStep) < -(self.sliderTapeLength - self.sliderStep) || (checkPosition * -self.sliderStep) > 0;
+
+            if(isOutsideSliderTape) {
 
                 var position = 0;
 
@@ -302,13 +303,18 @@ function engine() {
 
             for(var i = slidingOrderStack.length - 1; i >= 0; i--) {
                 if (slidingOrderStack[i].client === targetPosition) {
-                    if((data.stop === "r" || data.stop === "b") && (slidingOrderStack[i].direction === "r" || slidingOrderStack[i].direction === "b")) {
+
+                    var isStopByRBDirection = (data.stop === "r" || data.stop === "b") && (slidingOrderStack[i].direction === "r" || slidingOrderStack[i].direction === "b");
+                    var isStopByLTDirection = (data.stop === "l" || data.stop === "t") && (slidingOrderStack[i].direction === "l" || slidingOrderStack[i].direction === "t");
+                    var isStopByTransition = data.stop === "tp" && slidingOrderStack[i].direction === "tp";
+
+                    if(isStopByRBDirection) {
                         deleteOrder();
                     }
-                    if((data.stop === "l" || data.stop === "t") && (slidingOrderStack[i].direction === "l" || slidingOrderStack[i].direction === "t")) {
+                    if(isStopByLTDirection) {
                         deleteOrder();
                     }
-                    if(data.stop === "tp" && slidingOrderStack[i].direction === "tp"){
+                    if(isStopByTransition){
                         deleteOrder();
                     }
                 }
@@ -868,7 +874,7 @@ USL.autoSliding = function (param) {
     function destructModule() {
         autoSliding(false);
     }
-    function refresh() {
+    function refresh(objResize) {
 
     }
 
@@ -890,7 +896,7 @@ USL.autoSliding = function (param) {
  */
 USL.sideButtons = function (buttonsId) {
 
-    var name = "side-buttons";
+    var name = "sideButtons";
     var self = this;
     var leftButton;
     var rightButton;
@@ -907,30 +913,34 @@ USL.sideButtons = function (buttonsId) {
         leftButton = buttonsContainer.getElementsByClassName("slider-side-buttons__left-side")[0];
         rightButton = buttonsContainer.getElementsByClassName("slider-side-buttons__right-side")[0];
 
-        leftButton.onclick = function (event) {
-            if(self.sliderDirection === "h"){
-                self.engine.slide("l");
-            }else{
-                self.engine.slide("t");
-            }
-        };
-        rightButton.onclick = function (event) {
-            if(self.sliderDirection === "h"){
-                self.engine.slide("r");
-            }else{
-                self.engine.slide("b");
-            }
-        };
+        leftButton.addEventListener("click", slideLeft);
+        rightButton.addEventListener("click", slideRight);
+    }
+
+    function slideLeft (event) {
+        if(self.sliderDirection === "h"){
+            self.engine.slide("l");
+        }else{
+            self.engine.slide("t");
+        }
+    }
+
+    function slideRight (event) {
+        if(self.sliderDirection === "h"){
+            self.engine.slide("r");
+        }else{
+            self.engine.slide("b");
+        }
     }
 
     function installModule() {
         enableSideButtons();
     }
     function destructModule() {
-        leftButton.onclick = function (event) {};
-        rightButton.onclick = function (event) {};
+        leftButton.removeEventListener("click", slideLeft);
+        rightButton.removeEventListener("click", slideRight);
     }
-    function refresh() {
+    function refresh(objResize) {
 
     }
 
