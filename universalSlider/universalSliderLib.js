@@ -43,7 +43,9 @@ function engine() {
      */
     function slide(order, objParam) {
 
-        if(objParam && objParam.force && objParam.force === true){
+        var isForcedSlide = objParam && objParam.force && objParam.force === true;
+
+        if(isForcedSlide){
             trigger("forceCallSlide", {order: order, objParam: objParam});
             clearExecutionStack();
         }
@@ -75,9 +77,10 @@ function engine() {
 
         slidingOrderStack.length = 0;
 
-        for(var i = 0;i < arrExecutingAnimationId.length; i++){
-            clearInterval(arrExecutingAnimationId[i]);
-        }
+        arrExecutingAnimationId.forEach(function (item, i, arr) {
+            clearInterval(item);
+        });
+
         underAction = false;
 
         trigger("endSliding");
@@ -221,29 +224,7 @@ function engine() {
                 var arrPriorityNames = functionKF[arrayNames[i]].priority;
                 var selector = true;
 
-                for(var h = 0; h < arrPriorityNames.length; h++){
-                    if(arrayNames.indexOf(arrPriorityNames[h]) !== -1){//проверяет наличие имени приоритета в списке недобавленных имён
-                        selector = false;
-                    }
-                    if(arrPriorityNames[h] === "afterAll" && selector){//проверяет все ли имена в списке недобавленных имён имеют приоритет afterAll
-                        for(var g = 0; g < arrayNames.length; g++){
-                            if(functionKF[arrayNames[g]].priority.indexOf("afterAll") === -1){
-                                selector = false;
-                            }
-                        }
-                    }
-                    if(!selector && arrPriorityNames[h] !== "afterAll"){//проверяет нет ли притиворечащих приоритетов
-
-                        var anotherPriorityNames = functionKF[arrPriorityNames[h]].priority;
-
-                        if(anotherPriorityNames.indexOf(arrayNames[i]) !== -1){
-                            trigger("wrongFKPriority", {func1: arrayNames[i], func2: arrayNames[arrayNames.indexOf(arrPriorityNames[h])]});
-                            arrayNames.splice(i, 1);
-                            arrayNames.splice(arrayNames.indexOf(arrPriorityNames[h]), 1);
-                            i--;
-                        }
-                    }
-                }
+                arrPriorityNames.forEach(checkPriority, this);
 
                 if(selector) {
                     arrForExecute.push(arrayNames[i]);
@@ -252,13 +233,37 @@ function engine() {
             }
         }
 
-        for(var i = 0; i < arrForExecute.length; i++){
-            (function (i) {
-                var name = arrForExecute[i];
-                functionKF[arrForExecute[i]].func(data, function () {
-                    trigger("successCompleteKF", {name: name});
-                });
-            })(i);
+        arrForExecute.forEach(executeAllKF, this);
+
+        function executeAllKF(item, i, arr) {
+            var name = item;
+            functionKF[item].func(data, function () {
+                trigger("successCompleteKF", {name: name});
+            });
+        }
+
+        function checkPriority(item, i, arr) {
+            if(arrayNames.indexOf(item) !== -1){//проверяет наличие имени приоритета в списке недобавленных имён
+                selector = false;
+            }
+            if(item === "afterAll" && selector){//проверяет все ли имена в списке недобавленных имён имеют приоритет afterAll
+                for(var g = 0; g < arrayNames.length; g++){
+                    if(functionKF[arrayNames[g]].priority.indexOf("afterAll") === -1){
+                        selector = false;
+                    }
+                }
+            }
+            if(!selector && item !== "afterAll"){//проверяет нет ли притиворечащих приоритетов
+
+                var anotherPriorityNames = functionKF[item].priority;
+
+                if(anotherPriorityNames.indexOf(arrayNames[i]) !== -1){
+                    trigger("wrongFKPriority", {func1: arrayNames[i], func2: arrayNames[arrayNames.indexOf(item)]});
+                    arrayNames.splice(i, 1);
+                    arrayNames.splice(arrayNames.indexOf(item), 1);
+                    i--;
+                }
+            }
         }
     }
 
